@@ -10,19 +10,13 @@ file(GLOB SRC_FILES "src/*.cpp")
 
 add_executable(Minesweeper ${SRC_FILES})
 
-include_directories(
-  SYSTEM 
-    C:/msys64/ucrt64/include
-    C:/SDL2/include
-)
-
 target_include_directories(Minesweeper PRIVATE include)
 
 target_link_libraries(Minesweeper
   PRIVATE
-    C:/SDL2/lib/x64/SDL2main.lib
-    C:/SDL2/lib/x64/SDL2_image.dll
-    C:/SDL2/lib/x64/SDL2.lib
+    SDL2main
+    SDL2_image
+    SDL2
 )
 
 set_target_properties(Minesweeper PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
