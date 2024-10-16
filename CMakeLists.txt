@@ -15,9 +15,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 add_executable(Minesweeper ${SRC_FILES})
 
 if(WIN32)
-  set(LIBS C://SDL2/lib/x64/SDL2main.lib C://SDL2/lib/x64/SDL2_image.lib
+  set(LIBS C://SDL2/lib/x64/SDL2main.lib C://SDL2/lib/x64/SDL2_image.dll
            C://SDL2/lib/x64/SDL2.lib)
-  set(SDL_INCLUDE C://SDL2/include/SDL2/)
+  set(SDL_INCLUDE C://SDL2/include)
 elseif(UNIX)
   set(LIBS SDL2main SDL2_image SDL2)
 endif()
