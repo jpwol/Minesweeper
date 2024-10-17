@@ -15,17 +15,37 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${BIN_DIR})
 add_executable(Minesweeper ${SRC_FILES})
 
 if(WIN32)
-  set(LIBS C://SDL2/lib/x64/SDL2main.lib C://SDL2/lib/x64/SDL2_image.dll
-           C://SDL2/lib/x64/SDL2.lib)
-  set(SDL_INCLUDE C://SDL2/include)
-elseif(UNIX)
-  set(LIBS SDL2main SDL2_image SDL2)
-endif()
+  target_include_directories(Minesweeper 
+    PRIVATE 
+      include 
+      C://SDL2/include
+  )
 
-if(WIN32)
-  target_include_directories(Minesweeper PRIVATE include ${SDL_INCLUDE})
+  target_link_libraries(
+    Minesweeper
+      mingw32
+      C://SDL2/lib/libSDL2main.a 
+      C://SDL2/lib/libSDL2_image.a
+      C://SDL2/lib/libSDL2.a
+      winmm
+      dinput8
+      dxguid
+      dxerr8
+      ole32
+      oleaut32
+      imm32
+      version
+      setupapi
+  )
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static -mwindows")
 elseif(UNIX)
   target_include_directories(Minesweeper PRIVATE include)
+  target_link_libraries(SDL2main SDL2_image SDL2)
 endif()
 
-target_link_libraries(Minesweeper ${LIBS})
+# if(WIN32)
+#   target_include_directories(Minesweeper PRIVATE include ${SDL_INCLUDE})
+#   target_link_libraries(Minesweeper  ${STATIC_LIBS} ${SDL_LIBS})
+# elseif(UNIX)
+#   target_link_libraries(Minesweeper ${SDL_LIBS})
+# endif()
