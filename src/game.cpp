@@ -38,6 +38,9 @@ void Game::handleEvents() {
       break;
     case SDL_KEYDOWN:
       switch (event.key.keysym.sym) {
+      case SDLK_ESCAPE:
+        running = false;
+        break;
       case SDLK_e:
         showTiles = !showTiles;
         break;
