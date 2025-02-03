@@ -40,38 +40,38 @@ void Board::setTileFlag(int x, int y, Flags flag) {
 void Board::updateKeys() {
   for (auto &tile : tiles) {
     switch (tile.state >> TYPE_SHIFT) {
-    case Empty:
-      tile.texKey = "tileShown";
-      break;
-    case Number1:
-      tile.texKey = "number1";
-      break;
-    case Number2:
-      tile.texKey = "number2";
-      break;
-    case Number3:
-      tile.texKey = "number3";
-      break;
-    case Number4:
-      tile.texKey = "number4";
-      break;
-    case Number5:
-      tile.texKey = "number5";
-      break;
-    case Number6:
-      tile.texKey = "number6";
-      break;
-    case Number7:
-      tile.texKey = "number7";
-      break;
-    case Number8:
-      tile.texKey = "number8";
-      break;
-    case Mine:
-      tile.texKey = "mine";
-      break;
-    default:
-      break;
+      case Empty:
+        tile.texKey = "tileShown";
+        break;
+      case Number1:
+        tile.texKey = "number1";
+        break;
+      case Number2:
+        tile.texKey = "number2";
+        break;
+      case Number3:
+        tile.texKey = "number3";
+        break;
+      case Number4:
+        tile.texKey = "number4";
+        break;
+      case Number5:
+        tile.texKey = "number5";
+        break;
+      case Number6:
+        tile.texKey = "number6";
+        break;
+      case Number7:
+        tile.texKey = "number7";
+        break;
+      case Number8:
+        tile.texKey = "number8";
+        break;
+      case Mine:
+        tile.texKey = "mine";
+        break;
+      default:
+        break;
     }
   }
 }
@@ -89,8 +89,7 @@ void Board::initBoard(bool showTiles, bool &loseState, int &bombIndex,
     for (int y = 0; y < rows; y++) {
       positions.push_back({x, y});
       getTile(x, y)->state = 0x00;
-      if (showTiles)
-        setTileFlag(x, y, CLICKED);
+      if (showTiles) setTileFlag(x, y, CLICKED);
     }
   }
   std::random_device rd;
@@ -106,16 +105,14 @@ void Board::initBoard(bool showTiles, bool &loseState, int &bombIndex,
         uint8_t bombSum = 0;
         for (int _x = -1; _x <= 1; _x++) {
           for (int _y = -1; _y <= 1; _y++) {
-            if (_x == 0 && _y == 0)
-              continue;
+            if (_x == 0 && _y == 0) continue;
             int nx = x + _x, ny = y + _y;
             if (nx >= 0 && nx < cols && ny >= 0 && ny < rows &&
                 getTileType(nx, ny) == Mine)
               bombSum++;
           }
         }
-        if (bombSum > 0)
-          setTileType(x, y, bombSum);
+        if (bombSum > 0) setTileType(x, y, bombSum);
       }
     }
   }
@@ -138,8 +135,7 @@ std::vector<Board::Tile *> Board::getNearbyTiles(int x, int y) {
   std::vector<Tile *> tileptr;
   for (int _x = -1; _x <= 1; _x++) {
     for (int _y = -1; _y <= 1; _y++) {
-      if (_x == 0 && _y == 0)
-        continue;
+      if (_x == 0 && _y == 0) continue;
       int nx = x + _x, ny = y + _y;
       if (nx >= 0 && nx < cols && ny >= 0 && ny < rows) {
         tileptr.push_back(getTile(nx, ny));
