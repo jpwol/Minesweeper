@@ -1,7 +1,9 @@
 #pragma once
-#include "Board.h"
 #include <SDL2/SDL.h>
+
 #include <bitset>
+
+#include "Board.h"
 enum Signal : uint8_t { Zero, Button1, Button2, Button3, ButtonR };
 inline Board board;
 class Game {
@@ -9,7 +11,7 @@ class Game {
   SDL_Renderer *renderer;
 
   bool running = true;
-  float desiredDensity = 20.625;
+  float desiredDensity = 16;
   bool showTiles = false;
   int bombIndex;
 
@@ -18,7 +20,7 @@ class Game {
   bool bDown;
   bool loseState = false;
 
-public:
+ public:
   Game(int rows, int cols) { initGame(rows, cols); }
   ~Game() { cleanup(); }
   void handleResize(int r, int c, float dD) {
